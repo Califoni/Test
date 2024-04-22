@@ -9,9 +9,9 @@ grammar_cjkRuby: true
 注意，阅读本文档前请先完成RAG功能API文档的阅读。RAG系统架构如下图所示。
 ![whiteboard_exported_image](./images/whiteboard_exported_image.png)
 
-## 1.代码结构与文件位置
+## 1 代码结构与文件位置
 
-## 2.论坛知识爬取
+## 2 论坛知识爬取
 ### 2.1 主要工作：
 下述工作均实现于脚本文件：[faceMindTrendsCrawlUtils.py](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/blob/crawling_time/utils/faceMindTrendsCrawlUtils.py)
  1. 添加功能：对发帖、评论时间的进行爬取并和内容互相配对
@@ -36,9 +36,9 @@ grammar_cjkRuby: true
 * None。该方法将爬取的内容存储到项目结构中/cache/filter_txt和/cache/crawl_json中。其中crawl_json存储爬取的帖子信息，filter_txt存储对帖子内容进行过滤后的信息，过滤方法仅保留点赞数排名靠前的15条评论。
 ### 2.2 爬虫使用方法：
 将[爬虫代码](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/tree/crawling_time)clone下来之后运行faceMindTrendsCrawler.py即可。
-## 3.基于LLM的知识提取
+## 3 基于LLM的知识提取
 下述工作均实现于脚本[Generate_QAK.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/Generate_QAK.py)
-### 3.1主要工作
+### 3.1 主要工作
 1. 基于LLM对爬取的论坛文本全部进行知识提取，从每个帖子中生成Question-Answer对和Knowledge，并分别存储于./QAK_txt/QA。
 **函数原型**`def batch_generate_all(data_path,prompt_QAK_path):`
 **参数说明**
@@ -55,7 +55,7 @@ None。该方法将结合论坛文本+指令作为最终prompt，利用大模型
 * prompt_K_path(str)：用于生成K的prompt的路径，存储指令prompt指示模型生成K
 **返回值**
 None。该方法将结合论坛文本+指令作为最终prompt，利用大模型从一批论坛文本提取知识，另一批文本提取问答对。
-### 3.2使用方法
+### 3.2 使用方法
 1. 使用功能1，用同一批文本提取QAK：
 ```python
 if __name__ == '__main__':
@@ -74,9 +74,9 @@ if __name__ == '__main__':
     batch_generate("filter_txt", 'experiment_data/txt_for_QA', './prompt_QA.txt', './prompt_K.txt')
     # batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
 ```
-## 4.Milvus数据库存储知识
+## 4 Milvus数据库存储知识
 进行下述工作前需要现在本地部署好Milvus或者其他服务器上有部署好的Milvus数据库，部署Milvus详情见[部署Milvus文档](https://iqp7kyu4j3n.feishu.cn/docx/VLjndGJzMomWhNxKqLEcjvjknud)。
-### 4.1主要工作
+### 4.1 主要工作
 1. 初始化Milvus数据库，设置建表字段，并为知识向量建立索引以快速检索。
 **函数原型**`def connect_local_milvus():`根据需求自行修改连接的ip地址和端口号，连接到数据库并创建知识数据库`knowledge`
 **函数原型**`def build_table_and_index():`创建知识库后设置知识库中的表格字段，为向量字段建立索引
@@ -84,6 +84,8 @@ if __name__ == '__main__':
 /init_local_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/init_local_milvus.py)。
 2. 实现对Milvus数据库的连接、添加数据、向量相似度检索等操作，此部分[RAG功能API文档](https://iqp7kyu4j3n.feishu.cn/docx/EugWdA4WuoapG6xy48pcYTVKnuh)中已有详细解释。由于本人工作中的Milvus数据库字段与上述文档中的不同，因此对其中向量数据库存储和检索代码进行了修改。该功能实现于脚本[FaceMind_QKMatch/milvus_operator
 /retrieval_through_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/retrieval_through_milvus.py)。
+### 4.2 使用示例
+
 ## 5.检索知识增强生成全流程
 
 
