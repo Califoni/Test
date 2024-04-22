@@ -130,6 +130,8 @@ None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_
 2. 对比实验：直接把用户的query输入给LLM，没有先验知识，仅依据LLM本身进行回答。
 **函数原型**`def generate_answer_without_knowledge(queries):`
 **参数说明**
-
+* queries(list)：用户的query
+**返回值**
+None。
 
 ### 5.2 使用示例
