@@ -13,7 +13,7 @@ grammar_cjkRuby: true
 
 ## 2.论坛知识爬取
 ### 2.1 主要工作：
-脚本文件：[faceMindTrendsCrawlUtils.py](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/blob/crawling_time/utils/faceMindTrendsCrawlUtils.py)
+下述工作均实现于脚本文件：[faceMindTrendsCrawlUtils.py](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/blob/crawling_time/utils/faceMindTrendsCrawlUtils.py)
  1. 添加功能：对发帖、评论时间的进行爬取并和内容互相配对
 **函数原型**`  def fill_content_into_thread(thread: Thread, url: str, page: int, page_max: int,comment_idx:int=0): `
 **参数说明**
@@ -37,6 +37,7 @@ grammar_cjkRuby: true
 ### 2.2 爬虫使用方法：
 将[爬虫代码](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/tree/crawling_time)clone下来之后运行faceMindTrendsCrawler.py即可。
 ## 3.基于LLM的知识提取
+### 3.1主要工作
 
 ## 4.Milvus数据库存储知识
 
