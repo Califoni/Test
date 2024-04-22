@@ -56,7 +56,24 @@ None。该方法将结合论坛文本+指令作为最终prompt，利用大模型
 **返回值**
 None。该方法将结合论坛文本+指令作为最终prompt，利用大模型从一批论坛文本提取知识，另一批文本提取问答对。
 ### 3.2使用方法
-
+使用功能1：
+```
+if __name__ == '__main__':
+    openai.api_base = 'https://api.aigcbest.top/v1'
+    openai.api_key = get_api_key('./api_key.txt')
+    # txt_split('./filter_txt', 'experiment_data/txt_for_QA')
+    # batch_generate("filter_txt", 'experiment_data/txt_for_QA', './prompt_QA.txt', './prompt_K.txt')
+    batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
+```
+使用功能2：
+```
+if __name__ == '__main__':
+    openai.api_base = 'https://api.aigcbest.top/v1'
+    openai.api_key = get_api_key('./api_key.txt')
+    txt_split('./filter_txt', 'experiment_data/txt_for_QA')
+    batch_generate("filter_txt", 'experiment_data/txt_for_QA', './prompt_QA.txt', './prompt_K.txt')
+    # batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
+```
 ## 4.Milvus数据库存储知识
 
 ## 5.检索知识增强生成全流程
