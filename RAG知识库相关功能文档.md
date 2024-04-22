@@ -39,9 +39,24 @@ grammar_cjkRuby: true
 ## 3.基于LLM的知识提取
 下述工作均实现于脚本[Generate_QAK.py]()
 ### 3.1主要工作
-1. 基于LLM对爬取的论坛文本全部进行知识提取，从每个帖子中生成Question-Answer对和Knowledge，并存储于./QAK_txt中
-**函数原型**``
-2. 测试实验数据构造：对爬取的论坛文本文件进行分离，90%用于生成Knowledge，10%的文件分离出来存于./experiment_data/txt_for_QA，用于生成Qusetion-Answer对，将生成的QA对和K均存储于./experiment_data/QAK_txt中
+1. 基于LLM对爬取的论坛文本全部进行知识提取，从每个帖子中生成Question-Answer对和Knowledge，并分别存储于./QAK_txt/QA。
+**函数原型**`def batch_generate_all(data_path,prompt_QAK_path):`
+**参数说明**
+* data_path(str)：该路径下存储论坛信息文本
+* prompt_QAK_path(str)：该路径下存储用于生成QAK的prompt，指示模型生成问答对和知识
+**返回值**
+None。该方法将结合论坛文本+指令作为最终prompt，利用大模型进行论坛文本知识提取并存储。
+2. 测试实验数据构造：对爬取的论坛文本文件进行分离，90%用于生成Knowledge，10%的文件分离出来存于./experiment_data/txt_for_QA，用于生成Qusetion-Answer对，将生成的QA对和K均存储于./experiment_data/QAK_txt中。
+**函数原型**`def batch_generate(knowledge_path,QA_path,prompt_QA_path,prompt_K_path):`
+**参数说明**
+* knowledge_path(str)：该路径下存储用于提取知识的论坛信息文本
+* QA_path(str)：该路径下存储用于提取问答对的论坛信息文本
+* prompt_QA_path(str)：用于生成QA的prompt的路径，存储指令prompt指示模型生成QA
+* prompt_K_path(str)：用于生成K的prompt的路径，存储指令prompt指示模型生成K
+**返回值**
+None。该方法将结合论坛文本+指令作为最终prompt，利用大模型从一批论坛文本提取知识，另一批文本提取问答对。
+### 3.2使用方法
+
 ## 4.Milvus数据库存储知识
 
 ## 5.检索知识增强生成全流程
