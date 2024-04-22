@@ -57,7 +57,7 @@ None。该方法将结合论坛文本+指令作为最终prompt，利用大模型
 None。该方法将结合论坛文本+指令作为最终prompt，利用大模型从一批论坛文本提取知识，另一批文本提取问答对。
 ### 3.2使用方法
 1. 使用功能1，用同一批文本提取QAK：
-```
+```python
 if __name__ == '__main__':
     openai.api_base = 'https://api.aigcbest.top/v1'
     openai.api_key = get_api_key('./api_key.txt')
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
 ```
 2. 使用功能2，用从不同的文本中提取QA和K：
-```
+```python
 if __name__ == '__main__':
     openai.api_base = 'https://api.aigcbest.top/v1'
     openai.api_key = get_api_key('./api_key.txt')
@@ -75,7 +75,9 @@ if __name__ == '__main__':
     # batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
 ```
 ## 4.Milvus数据库存储知识
-
+进行下述工作前需要现在本地部署好Milvus或者其他服务器上有部署好的Milvus数据库，部署Milvus详情见[文档](https://iqp7kyu4j3n.feishu.cn/docx/VLjndGJzMomWhNxKqLEcjvjknud)
+### 4.1主要工作
+1. 
 ## 5.检索知识增强生成全流程
 
 
