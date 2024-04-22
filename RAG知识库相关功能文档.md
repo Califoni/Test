@@ -1,7 +1,7 @@
 ---
 title: 'RAG知识库相关功能文档'
 tags: RAG,知识库构建,爬虫
-category: /小书匠/日记/2024-04
+category: /FaceMind/文档/2024-04
 emoji: "☺"
 grammar_cjkRuby: true
 ---
@@ -37,7 +37,7 @@ grammar_cjkRuby: true
 ### 2.2 爬虫使用方法：
 将[爬虫代码](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/tree/crawling_time)clone下来之后运行faceMindTrendsCrawler.py即可。
 ## 3.基于LLM的知识提取
-下述工作均实现于脚本[Generate_QAK.py]()
+下述工作均实现于脚本[Generate_QAK.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/Generate_QAK.py)
 ### 3.1主要工作
 1. 基于LLM对爬取的论坛文本全部进行知识提取，从每个帖子中生成Question-Answer对和Knowledge，并分别存储于./QAK_txt/QA。
 **函数原型**`def batch_generate_all(data_path,prompt_QAK_path):`
