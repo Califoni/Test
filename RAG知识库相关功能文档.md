@@ -136,11 +136,16 @@ None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_
 ### 5.2 使用示例
 ```python
 if __name__=='__main__':
+	# openai连接配置
     openai.api_base = 'https://api.aigcbest.top/v1'
     openai.api_key = get_api_key('./api_key.txt')
+	# 获取词嵌入模型
     embedder = init_embedder()
+	# 获取数据库操作器
     milvus = get_milvus('knowledge', 'knowledge_from_NGA_forum', embedder)
+	# 获取用户queries
     queries=get_queries()
+	# 分别进行检索增强生成回答和直接生成回答
     retrieval_augmented_generation(queries,milvus)
     generate_answer_without_knowledge(queries)
 ```
