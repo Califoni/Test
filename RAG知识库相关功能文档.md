@@ -24,7 +24,7 @@ grammar_cjkRuby: true
 * comment_idx(int)：当前页面评论的起始索引
 **返回值**
 * None。该方法对Thread实例进行修改，将爬取的信息填充到Thread实例中。
- 2. 修改功能：指定爬取的有效帖子数量
+ 2. 添加功能：指定爬取的有效帖子数量
 **函数原型**`  def crawl_and_rephrase(game: str, section: str, url: str,counts:int=1000, model: str="gpt-3.5-turbo", temperature: float=1.0, thread_list_pages: int=2, rephrase_attemps: int=3): `
 **参数说明**
 * game(str)：要爬取的NGA论坛的模块
