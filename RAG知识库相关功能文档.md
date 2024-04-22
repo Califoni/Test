@@ -126,12 +126,12 @@ if __name__=='__main__':
 * queries(list)：用户的query
 * milvus(MilvusOperator)：类MilvusOperator实例，用于操作数据库
 **返回值**
-None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_Generation.txt中。
+None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_RAG.txt。
 2. 对比实验：直接把用户的query输入给LLM，没有先验知识，仅依据LLM本身进行回答。
 **函数原型**`def generate_answer_without_knowledge(queries):`
 **参数说明**
 * queries(list)：用户的query
 **返回值**
-None。
+None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_Generation.txt。
 
 ### 5.2 使用示例
