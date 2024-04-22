@@ -10,7 +10,10 @@ grammar_cjkRuby: true
 !whiteboard_exported_image](./images/whiteboard_exported_image.png)![whiteboard_exported_image](./images/whiteboard_exported_image_1.png)
 
 ## 1 代码结构与文件位置
-
+知识库构建主要分两部分
+1. [论坛数据爬取部分](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/tree/crawling_time)
+2. [基于LLM的知识提取部分](https://github.com/FaceMindCodeBase/FaceMind_QKMatch)
+具体功能实现代码位置详见下文描述。
 ## 2 论坛知识爬取
 ### 2.1 主要工作：
 下述工作均实现于脚本文件：[faceMindTrendsCrawlUtils.py](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/blob/crawling_time/utils/faceMindTrendsCrawlUtils.py)
