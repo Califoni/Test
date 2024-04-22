@@ -55,7 +55,7 @@ None。该方法将结合论坛文本+指令作为最终prompt，利用大模型
 * prompt_K_path(str)：用于生成K的prompt的路径，存储指令prompt指示模型生成K
 **返回值**
 None。该方法将结合论坛文本+指令作为最终prompt，利用大模型从一批论坛文本提取知识，另一批文本提取问答对。
-### 3.2 使用方法
+### 3.2 使用示例
 1. 使用功能1，用同一批文本提取QAK：
 ```python
 if __name__ == '__main__':
@@ -118,7 +118,18 @@ if __name__=='__main__':
         print(retrieval_res.split('\n'))
         assembled_prompt="".join(res for res in retrieval_res)
 ```
-## 5.检索知识增强生成全流程
+## 5 检索知识增强生成
+### 5.1 主要工作
+1. 根据用户的query对知识库中的knowledge进行相似性匹配，返回相似度最高的top_k条作为先验知识，与query一块整合成prompt给LLM返回answer。
+**函数原型**`def retrieval_augmented_generation(queries,milvus):`
+**参数说明**
+* queries(list)：用户的query
+* milvus(MilvusOperator)：类MilvusOperator实例，用于操作数据库
+**返回值**
+None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_Generation.txt中。
+2. 对比实验：直接把用户的query输入给LLM，没有先验知识，仅依据LLM本身进行回答。
+**函数原型**`def generate_answer_without_knowledge(queries):`
+**参数说明**
 
 
-
+### 5.2 使用示例
