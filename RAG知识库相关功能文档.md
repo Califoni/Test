@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # batch_generate_all("genshin_data", 'prompt/prompt_QAK_genshin.txt')
 ```
 ## 4.Milvus数据库存储知识
-进行下述工作前需要现在本地部署好Milvus或者其他服务器上有部署好的Milvus数据库，部署Milvus详情见[文档](https://iqp7kyu4j3n.feishu.cn/docx/VLjndGJzMomWhNxKqLEcjvjknud)
+进行下述工作前需要现在本地部署好Milvus或者其他服务器上有部署好的Milvus数据库，部署Milvus详情见[部署Milvus文档](https://iqp7kyu4j3n.feishu.cn/docx/VLjndGJzMomWhNxKqLEcjvjknud)。
 ### 4.1主要工作
 1. 
 ## 5.检索知识增强生成全流程
