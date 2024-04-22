@@ -85,7 +85,39 @@ if __name__ == '__main__':
 2. 实现对Milvus数据库的连接、添加数据、向量相似度检索等操作，此部分[RAG功能API文档](https://iqp7kyu4j3n.feishu.cn/docx/EugWdA4WuoapG6xy48pcYTVKnuh)中已有详细解释。由于本人工作中的Milvus数据库字段与上述文档中的不同，因此对其中向量数据库存储和检索代码进行了修改。该功能实现于脚本[FaceMind_QKMatch/milvus_operator
 /retrieval_through_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/retrieval_through_milvus.py)。
 ### 4.2 使用示例
-
+```python
+if __name__=='__main__':
+    embedder=init_embedder()
+   # 连接到Milvus数据库
+   milvus=MilvusOperator(database_name='knowledge',collection_name='knowledge_from_NGA_forum',embedder=embedder)
+    milvus_connect_config={
+        'host':'192.168.31.22',
+        'portal':19530
+    }
+    milvus.connect_to_milvus(milvus_connect_config=milvus_connect_config,verbose=True)
+	# 这段注释的代码用于添加批量知识到Knowledge数据库中，只需要运行一次即可注释，不然会重复添加相同数据
+    # with open("QAK_txt/Knowledge.txt", "r") as file:
+    #     lines = file.readlines()
+    # batch_knowledge=[]
+    # for idx,line in enumerate(lines):
+    #     batch_knowledge.append(line)
+    # milvus.add_batch_knowledge(batch_knowledge)
+	
+	# 获取10条question，测试向量相似度检索功能
+    with open('../experiment_data/QAK_txt/QA.txt', 'r')as file:
+        lines=file.readlines()
+    questions=[]
+    for idx,line in enumerate(lines):
+        if line.startswith('Q:'):
+            questions.append(line)
+        if idx>10:
+            break
+    for question in questions:
+        print(question)
+        retrieval_res=milvus.retrieval_topk(question,3)
+        print(retrieval_res.split('\n'))
+        assembled_prompt="".join(res for res in retrieval_res)
+```
 ## 5.检索知识增强生成全流程
 
 
