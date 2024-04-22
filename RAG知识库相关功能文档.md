@@ -6,8 +6,8 @@ emoji: "☺"
 grammar_cjkRuby: true
 ---
 本文档用于说明RAG（Retrieval Augmented Generation）系统中检索知识库相关构建流程。
-注意，阅读本文档前请先完成RAG功能API文档的阅读。RAG系统架构如下图所示。
-![whiteboard_exported_image](./images/whiteboard_exported_image.png)
+注意，阅读本文档前请先完成RAG功能API文档的阅读。RAG系统架构如下图所示，本工作实现的是黄色部分的QK-Match System。
+!whiteboard_exported_image](./images/whiteboard_exported_image.png)![whiteboard_exported_image](./images/whiteboard_exported_image_1.png)
 
 ## 1 代码结构与文件位置
 
