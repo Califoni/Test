@@ -37,8 +37,10 @@ grammar_cjkRuby: true
 ### 2.2 爬虫使用方法：
 将[爬虫代码](https://github.com/FaceMindCodeBase/FaceMind_Trends_Backend/tree/crawling_time)clone下来之后运行faceMindTrendsCrawler.py即可。
 ## 3.基于LLM的知识提取
+下述工作均实现于脚本[Generate_QAK.py]()
 ### 3.1主要工作
-
+1. 基于LLM对爬取的论坛文本全部进行知识提取，从每个帖子中生成Question-Answer对和Knowledge，并存储于./QAK_txt中
+2. 测试实验数据构造：对爬取的论坛文本文件进行分离，90%用于生成Knowledge，10%的文件分离出来存于./experiment_data/txt_for_QA，用于生成Qusetion-Answer对，将结果存储于./experiment_data/QAK_txt中
 ## 4.Milvus数据库存储知识
 
 ## 5.检索知识增强生成全流程
