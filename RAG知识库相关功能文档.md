@@ -81,7 +81,8 @@ if __name__ == '__main__':
 /init_local_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/init_local_milvus.py)。
 **函数原型**`def connect_local_milvus():`根据需求自行修改连接的ip地址和端口号，连接到数据库并创建知识数据库`knowledge`
 **函数原型**`def build_table_and_index():`创建知识库后设置知识库中的表格字段，为向量字段建立索引
-2. 实现对Milvus数据库的连接、添加数据、向量相似度检索等操作，此部分[RAG功能API文档](https://iqp7kyu4j3n.feishu.cn/docx/EugWdA4WuoapG6xy48pcYTVKnuh)中已有详细解释。
+2. 该功能实现于脚本[FaceMind_QKMatch/milvus_operator
+/retrieval_through_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/retrieval_through_milvus.py)实现对Milvus数据库的连接、添加数据、向量相似度检索等操作，此部分[RAG功能API文档](https://iqp7kyu4j3n.feishu.cn/docx/EugWdA4WuoapG6xy48pcYTVKnuh)中已有详细解释。由于本人工作中的Milvus数据库字段与上述文档中的不同，因此对其中向量数据库存储和检索代码进行了修改。
 ## 5.检索知识增强生成全流程
 
 
