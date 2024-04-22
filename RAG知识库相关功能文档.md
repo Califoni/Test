@@ -78,8 +78,8 @@ if __name__ == '__main__':
 进行下述工作前需要现在本地部署好Milvus或者其他服务器上有部署好的Milvus数据库，部署Milvus详情见[部署Milvus文档](https://iqp7kyu4j3n.feishu.cn/docx/VLjndGJzMomWhNxKqLEcjvjknud)。
 ### 4.1 主要工作
 1. 初始化Milvus数据库，设置建表字段，并为知识向量建立索引以快速检索。
-**函数原型**`def connect_local_milvus():`根据需求自行修改连接的ip地址和端口号，连接到数据库并创建知识数据库`knowledge`
-**函数原型**`def build_table_and_index():`创建知识库后设置知识库中的表格字段，为向量字段建立索引
+**函数原型**`def connect_local_milvus():`根据需求自行修改连接的ip地址和端口号，连接到数据库并创建知识数据库`knowledge`。
+**函数原型**`def build_table_and_index():`创建知识库后设置知识库中的表格字段，为向量字段建立索引。
 上述功能实现于脚本[FaceMind_QKMatch/milvus_operator
 /init_local_milvus.py](https://github.com/FaceMindCodeBase/FaceMind_QKMatch/blob/main/milvus_operator/init_local_milvus.py)。
 2. 实现对Milvus数据库的连接、添加数据、向量相似度检索等操作，此部分[RAG功能API文档](https://iqp7kyu4j3n.feishu.cn/docx/EugWdA4WuoapG6xy48pcYTVKnuh)中已有详细解释。由于本人工作中的Milvus数据库字段与上述文档中的不同，因此对其中向量数据库存储和检索代码进行了修改。该功能实现于脚本[FaceMind_QKMatch/milvus_operator
@@ -123,8 +123,8 @@ if __name__=='__main__':
 1. 根据用户的query对知识库中的knowledge进行相似性匹配，返回相似度最高的top_k条作为先验知识，与query一块整合成prompt给LLM返回answer。
 **函数原型**`def retrieval_augmented_generation(queries,milvus):`
 **参数说明**
-* queries(list)：用户的query
-* milvus(MilvusOperator)：类MilvusOperator实例，用于操作数据库
+* queries(list)：用户的query。
+* milvus(MilvusOperator)：类MilvusOperator实例，用于操作数据库。
 **返回值**
 None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_RAG.txt。
 2. 对比实验：直接把用户的query输入给LLM，没有先验知识，仅依据LLM本身进行回答。
@@ -133,5 +133,14 @@ None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_
 * queries(list)：用户的query
 **返回值**
 None。该方法获取LLM的回答后将问答对存储到./experiment_data/QAK_txt/QA_by_Generation.txt。
-
 ### 5.2 使用示例
+```python
+if __name__=='__main__':
+    openai.api_base = 'https://api.aigcbest.top/v1'
+    openai.api_key = get_api_key('./api_key.txt')
+    embedder = init_embedder()
+    milvus = get_milvus('knowledge', 'knowledge_from_NGA_forum', embedder)
+    queries=get_queries()
+    retrieval_augmented_generation(queries,milvus)
+    generate_answer_without_knowledge(queries)
+```
